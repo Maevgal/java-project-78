@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class AppTest {
     @Test
-    void emptyTest(){
+    void emptyTest() {
         Assertions.assertEquals(1, 1);
     }
 
