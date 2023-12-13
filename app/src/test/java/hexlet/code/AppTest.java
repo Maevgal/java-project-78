@@ -60,6 +60,7 @@ public class AppTest {
         boolean expected = true;
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     void stringShemaWitAllFalseRules() {
         Validator v = new Validator();
@@ -68,6 +69,7 @@ public class AppTest {
         boolean expected = false;
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     void stringShemaRuleContainsFalse() {
         Validator v = new Validator();
@@ -79,6 +81,7 @@ public class AppTest {
         boolean expected = false;
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     void stringShemaRuleContainsTrue() {
         Validator v = new Validator();
@@ -89,8 +92,6 @@ public class AppTest {
         boolean expected = true;
         Assertions.assertEquals(expected, actual);
     }
-
-
 
 
 }

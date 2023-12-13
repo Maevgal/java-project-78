@@ -1,9 +1,9 @@
 package hexlet.code;
 
 public class StringSchema {
-    private int minLength;//0
-    private String substring;//null
-    private boolean required;//false
+    private int minLength;
+    private String substring;
+    private boolean required;
 
     public boolean isValid(String str) {
         boolean check = true;
