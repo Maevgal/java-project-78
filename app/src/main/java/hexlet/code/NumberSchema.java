@@ -26,12 +26,12 @@ public final class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public final NumberSchema positive() {
+    public NumberSchema positive() {
         this.positiveRule = true;
         return this;
     }
 
-    public final NumberSchema range(int minValue, int maxValue) {
+    public NumberSchema range(int minValue, int maxValue) {
         this.minRangeValue = minValue;
         this.maxRangeValue = maxValue;
         return this;

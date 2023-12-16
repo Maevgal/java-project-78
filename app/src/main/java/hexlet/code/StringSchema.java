@@ -4,17 +4,17 @@ public class StringSchema extends BaseSchema {
     private int minLengthRule;
     private String substringRule;
 
-    public final StringSchema required() {
+    public StringSchema required() {
         this.requiredRule = true;
         return this;
     }
 
-    public final StringSchema minLength(int minLength) {
+    public StringSchema minLength(int minLength) {
         this.minLengthRule = minLength;
         return this;
     }
 
-    public final StringSchema contains(String substring) {
+    public StringSchema contains(String substring) {
         this.substringRule = substring;
         return this;
     }
