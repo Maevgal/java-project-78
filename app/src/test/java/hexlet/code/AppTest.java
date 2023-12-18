@@ -3,6 +3,9 @@ package hexlet.code;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AppTest {
     @Test
     void stringShemaNotRuleEmptyString() {
@@ -178,6 +181,72 @@ public class AppTest {
         schema.required();
         boolean actual = schema.range(5, 10).isValid(4);
         boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaNotRuleNull() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        boolean actual = schema.isValid(null);
+        boolean expected = true;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaNullRuleRequired() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        boolean actual = schema.required().isValid(null);
+        boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaNewMapRuleRequired() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        boolean actual = schema.required().isValid(new HashMap());
+        boolean expected = true;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaRuleRequiredSizeOfWithoutcount() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        schema.required().isValid(new HashMap());
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+        boolean actual = schema.isValid(data);
+        boolean expected = true;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaRuleRequiredSizeOfFail() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        schema.required().isValid(new HashMap());
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+        schema.sizeof(2);
+        boolean actual = schema.isValid(data);
+        boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaRuleRequiredSizeOf() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        schema.required().isValid(new HashMap());
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+        data.put("key2", "value2");
+        schema.sizeof(2);
+        boolean actual = schema.isValid(data);
+        boolean expected = true;
         Assertions.assertEquals(expected, actual);
     }
 }

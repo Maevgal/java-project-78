@@ -7,18 +7,19 @@ public final class NumberSchema extends BaseSchema {
 
     @Override
     public boolean isValid(Object obj) {
-        Integer number = (Integer) obj;
-        boolean check = true;
-        if (this.requiredRule) {
-            check = check && !(number == null);
+        if (obj == null) {
+            return !this.requiredRule;
+        } else {
+            Integer number = (Integer) obj;
+            boolean check = true;
             if (this.positiveRule) {
-                check = check && (number > 0);
+                check = number > 0;
             }
             if (this.minRangeValue != null && this.maxRangeValue != null) {
                 check = check && (number >= this.minRangeValue && number <= this.maxRangeValue);
             }
+            return check;
         }
-        return check;
     }
 
     public NumberSchema required() {

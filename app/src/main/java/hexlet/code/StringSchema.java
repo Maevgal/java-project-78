@@ -22,16 +22,12 @@ public class StringSchema extends BaseSchema {
     @Override
     public boolean isValid(Object obj) {
         if (obj == null) {
-            if (!this.requiredRule) {
-                return true;
-            }
-            return false;
-
+            return !this.requiredRule;
         } else {
-            String str = obj.toString();
+            String str = (String) obj;
             boolean check = true;
             if (this.requiredRule) {
-                check = check && !(obj == null || str.isEmpty());
+                check = check && !(str.isEmpty());
                 if (this.minLengthRule != 0) {
                     check = check && (str.length() >= this.minLengthRule);
                 }
