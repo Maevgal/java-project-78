@@ -249,4 +249,68 @@ public class AppTest {
         boolean expected = true;
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void mapShemaShape() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", 100);
+        boolean actual = schema.isValid(human1);
+        boolean expected = true;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaShape2() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+        boolean actual = schema.isValid(human2);
+        boolean expected = true;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaShape3() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+        boolean actual = schema.isValid(human3);
+        boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void mapShemaShape4() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+        Map<String, Object> human4 = new HashMap<>();
+        human4.put("name", "Valya");
+        human4.put("age", -5);
+        boolean actual = schema.isValid(human4);
+        boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
 }
