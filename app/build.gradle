@@ -31,10 +31,6 @@ jacoco {
     toolVersion = "0.8.9"
 }
 
-application {
-    mainClass = 'hexlet.code.App'
-}
-
 compileJava {
     options.release = 20
 }
