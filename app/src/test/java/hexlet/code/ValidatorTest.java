@@ -111,6 +111,15 @@ public class ValidatorTest {
     }
 
     @Test
+    void numberShemaNotRuleWithString() {
+        Validator v = new Validator();
+        NumberSchema schema = v.number();
+        boolean actual = schema.required().isValid("5");
+        boolean expected = false;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void numberShemaNotRuleNumberNullRulePositive() {
         Validator v = new Validator();
         NumberSchema schema = v.number();

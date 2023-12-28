@@ -10,15 +10,18 @@ public final class NumberSchema extends BaseSchema {
         if (obj == null) {
             return !this.requiredRule;
         } else {
-            Integer number = (Integer) obj;
-            boolean check = true;
-            if (this.positiveRule) {
-                check = number > 0;
+            if (obj instanceof Integer) {
+                Integer number = (Integer) obj;
+                boolean check = true;
+                if (this.positiveRule) {
+                    check = number > 0;
+                }
+                if (this.minRangeValue != null && this.maxRangeValue != null) {
+                    check = check && (number >= this.minRangeValue && number <= this.maxRangeValue);
+                }
+                return check;
             }
-            if (this.minRangeValue != null && this.maxRangeValue != null) {
-                check = check && (number >= this.minRangeValue && number <= this.maxRangeValue);
-            }
-            return check;
+            return false;
         }
     }
 
