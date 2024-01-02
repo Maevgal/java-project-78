@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema {
+public final class StringSchema extends BaseSchema {
     public StringSchema required() {
         super.addRule("required",
                 obj -> obj instanceof String string && !string.isEmpty());
