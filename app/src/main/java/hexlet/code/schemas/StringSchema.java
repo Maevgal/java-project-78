@@ -1,42 +1,21 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema {
-    private int minLengthRule;
-    private String substringRule;
-
     public StringSchema required() {
-        this.requiredRule = true;
+        super.addRule("required",
+                obj -> obj instanceof String string && !string.isEmpty());
         return this;
     }
 
     public StringSchema minLength(int minLength) {
-        this.minLengthRule = minLength;
+        super.addRule("minLength", (obj) -> obj instanceof String string
+                && string.length() >= minLength);
         return this;
     }
 
     public StringSchema contains(String substring) {
-        this.substringRule = substring;
+        super.addRule("contains", (obj) -> obj instanceof String string
+                && (substring == null || string.contains(substring)));
         return this;
-    }
-
-    @Override
-    public boolean isValid(Object obj) {
-        if (obj == null) {
-            return !this.requiredRule;
-        } else {
-            String str = (String) obj;
-            boolean check = true;
-            if (this.requiredRule) {
-                check = check && !(str.isEmpty());
-                if (this.minLengthRule != 0) {
-                    check = check && (str.length() >= this.minLengthRule);
-                }
-                if (this.substringRule != null) {
-                    check = check && str.contains(this.substringRule);
-                }
-                return check;
-            }
-            return true;
-        }
     }
 }
