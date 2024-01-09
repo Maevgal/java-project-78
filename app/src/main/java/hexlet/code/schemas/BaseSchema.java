@@ -16,9 +16,4 @@ public abstract class BaseSchema {
                 || this.rule.values().stream()
                 .allMatch(predicate -> predicate.test(obj));
     }
-    /*protected boolean requiredRule;
-
-    public abstract BaseSchema required();
-
-    public abstract boolean isValid(Object obj);*/
 }
